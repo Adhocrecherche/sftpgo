@@ -35,7 +35,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 {{define "page_body"}}
 <div class="card shadow my-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold"><a href="{{.FilesURL}}?path=%2F"><i class="fas fa-home"></i>&nbsp;Home</a>&nbsp;{{range .Paths}}{{if eq .Href ""}}/{{.DirName}}{{else}}<a href="{{.Href}}">/{{.DirName}}</a>{{end}}{{end}}</h6>
+        <h6 class="m-0 font-weight-bold"><a href="{{.FilesURL}}?path=%2F"><i class="fas fa-home"></i>&nbsp;Racine|Root</a>&nbsp;{{range .Paths}}{{if eq .Href ""}}/{{.DirName}}{{else}}<a href="{{.Href}}">/{{.DirName}}</a>{{end}}{{end}}</h6>
     </div>
     <div class="card-body">
         {{if .Error}}
@@ -58,9 +58,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                     <tr>
                         <th></th>
                         <th>Type</th>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Last modified</th>
+                        <th>Nom | Name</th>
+                        <th>Taille | Size</th>
+                        <th>Modifié | Last modified</th>
                     </tr>
                 </thead>
             </table>
@@ -75,7 +75,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="uploadFilesModalLabel">
-                    Upload one or more files
+                    Téléverser un ou plusieurs fichiers | Upload one or more files
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -89,8 +89,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                     <input type="file" id="files_name" name="filenames" required multiple>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler | Cancel</button>
+                    <button type="submit" class="btn btn-primary">Soumettre | Submit</button>
                 </div>
             </form>
         </div>
@@ -532,9 +532,22 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             "scrollX": false,
             "scrollY": false,
             "responsive": true,
-            "language": {
+			"language": {
                 "loadingRecords": "",
-                "emptyTable": "No files or folders"
+                "emptyTable": "Aucun fichier ou répertoire | No files or folders",
+				"sInfoEmpty": "Aucune entrée | No entry",
+				"sEmptyTable":"Aucune donnée disponible | No data available in table",
+				"sInfo":"_START_ / _END_ (Total _TOTAL_)",
+				"sLengthMenu":"Montrer | Show _MENU_ entrées | entries",
+				"sZeroRecords":"Aucun enregistrement correspondant trouvé | No matching records found",
+				"sSearch":"Rechercher | Search:",
+				sInfoFiltered:"(Filtré | Filtered)",
+				"oPaginate": {
+					"sFirst":"Premier | First",
+					"sLast":"Dernier | Last",
+					"sNext":"Suivant | Next",
+					"sPrevious":"Précédent | Previous"
+				}
             },
             "initComplete": function (settings, json) {
                 table.button().add(0, 'refresh');

@@ -35,7 +35,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">View and manage shares</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Afficher et gérer les partages | View and manage shares</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -43,8 +43,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Scope</th>
+                        <th>Nom | Name</th>
+                        <th>Droits | Scope</th>
                         <th>Info</th>
                         <th></th>
                     </tr>
@@ -73,19 +73,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">
-                    Confirmation required
+                    Confirmation requise | Confirmation required
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Do you want to delete the selected share?</div>
+            <div class="modal-body">Voulez-vous supprimer le partage sélectionné ?<br/>Do you want to delete the selected share?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                    Cancel
+                    Annuler | Cancel
                 </button>
                 <a class="btn btn-warning" href="#" onclick="deleteAction()">
-                    Delete
+                    Supprimer | Delete
                 </a>
             </div>
         </div>
@@ -98,7 +98,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="linkModalLabel">
-                    Share access links
+                    Partager les liens d'accès | Share access links
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -106,14 +106,36 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             </div>
             <div class="modal-body">
                 <div id="readShare">
-                    <p>You can download the shared contents, as single zip file, using this <a id="readLink" href="#" target="_blank">link</a>.</p>
-                    <p>If the share consists of a single directory you can browse and download files using this <a id="readBrowseLink" href="#" target="_blank">page</a>.</p>
-                    <p>If the share consists of a single file you can download it uncompressed using this <a id="readUncompressedLink" href="#" target="_blank">link</a>.</p>
+                    <p>Vous pouvez télécharger le contenu partagé, sous forme de fichier zip unique, en utilisant le lien ci-dessous.
+                        <br/>
+                        You can download the shared content, as a single zip file, using the link below.
+                        <br/>
+                        <a id="readLink" href="#" target="_blank">Accéder au fichier zippé / Go to zipped file</a>
+                    </p>
+                    <p>Si le partage se compose d'un seul répertoire, vous pouvez parcourir et télécharger des fichiers à l'aide de cette page.
+                        <br/>
+                        If the share consists of a single directory you can browse and download files using this page.
+                        <br/>
+                        <a id="readBrowseLink" href="#" target="_blank">Accéder à la page / Go to page</a>
+                    </p>
+                    <p>Si le partage consiste en un seul fichier, vous pouvez le télécharger non compressé en utilisant ce lien.
+                        <br/>
+                        If the share consists of a single file you can download it uncompressed using this link.
+                        <br/>
+                        <a id="readUncompressedLink" href="#" target="_blank">Accéder au fichier / Go to file</a>
+                    </p>
                 </div>
                 <div id="writeShare">
-                    <p>You can upload one or more files to the shared directory using this <a id="writePageLink" href="#" target="_blank">page</a></p>
+                    <p>Vous pouvez téléverser un ou plusieurs fichiers dans le répertoire partagé à l'aide de cette page.
+                        <br/>
+                        You can upload one or more files to the shared directory using this page.
+                        <br/>
+                        <a id="writePageLink" href="#" target="_blank">Accéder à la page / Go to page</a>
+					</p>
                 </div>
                 <div id="expiredShare">
+					Ce partage n'est plus accessible car il a expiré
+                    <br/>
                     This share is no longer accessible because it has expired
                 </div>
             </div>
@@ -177,7 +199,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.add = {
             text: '<i class="fas fa-plus"></i>',
             name: 'add',
-            titleAttr: "Add",
+            titleAttr: "Ajouter | Add",
             action: function (e, dt, node, config) {
                 window.location.href = '{{.ShareURL}}';
             }
@@ -186,7 +208,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.edit = {
             text: '<i class="fas fa-pen"></i>',
             name: 'edit',
-            titleAttr: "Edit",
+            titleAttr: "Éditer | Edit",
             action: function (e, dt, node, config) {
                 var shareID = dt.row({ selected: true }).data()[0];
                 var path = '{{.ShareURL}}' + "/" + fixedEncodeURIComponent(shareID);
@@ -198,7 +220,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.delete = {
             text: '<i class="fas fa-trash"></i>',
             name: 'delete',
-            titleAttr: "Delete",
+            titleAttr: "Supprimer | Delete",
             action: function (e, dt, node, config) {
                 $('#deleteModal').modal('show');
             },
@@ -208,7 +230,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.link = {
             text: '<i class="fas fa-link"></i>',
             name: 'link',
-            titleAttr: "Link",
+            titleAttr: "Lien | Link",
             action: function (e, dt, node, config) {
                 var shareData = dt.row({ selected: true }).data();
                 var shareID = shareData[0];
@@ -262,7 +284,21 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             "scrollY": false,
             "responsive": true,
             "language": {
-                "emptyTable": "No share defined"
+                "loadingRecords": "",
+                "emptyTable": "Aucun fichier ou répertoire | No files or folders",
+				"sInfoEmpty": "Aucune entrée | No entry",
+				"sEmptyTable":"Aucune donnée disponible | No data available in table",
+				"sInfo":"_START_ / _END_ (Total _TOTAL_)",
+				"sLengthMenu":"Montrer | Show _MENU_ entrées | entries",
+				"sZeroRecords":"Aucun enregistrement correspondant trouvé | No matching records found",
+				"sSearch":"Rechercher | Search:",
+				sInfoFiltered:"(Filtré | Filtered)",
+				"oPaginate": {
+					"sFirst":"Premier | First",
+					"sLast":"Dernier | Last",
+					"sNext":"Suivant | Next",
+					"sPrevious":"Précédent | Previous"
+				}
             },
             "order": [[1, 'asc']]
         });

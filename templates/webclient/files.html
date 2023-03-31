@@ -44,7 +44,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold"><a href="{{.FilesURL}}?path=%2F"><i class="fas fa-home"></i>&nbsp;Home</a>&nbsp;{{range .Paths}}{{if eq .Href ""}}/{{.DirName}}{{else}}<a href="{{.Href}}">/{{.DirName}}</a>{{end}}{{end}}</h6>
+        <h6 class="m-0 font-weight-bold"><a href="{{.FilesURL}}?path=%2F"><i class="fas fa-home"></i>&nbsp;Racine|Root</a>&nbsp;{{range .Paths}}{{if eq .Href ""}}/{{.DirName}}{{else}}<a href="{{.Href}}">/{{.DirName}}</a>{{end}}{{end}}</h6>
     </div>
     <div class="card-body">
         {{if .Error}}
@@ -61,9 +61,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                     <tr>
                         <th></th>
                         <th>Type</th>
-                        <th>Name</th>
-                        <th>Size</th>
-                        <th>Last modified</th>
+                        <th>Nom | Name</th>
+                        <th>Taille | Size</th>
+                        <th>Modifié | Last modified</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -81,7 +81,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="createDirModalLabel">
-                    Create a new directory
+                    Créer un nouveau répertoire | Create a new directory
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -90,13 +90,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             <form id="create_dir_form" action="" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="directory_name" class="col-form-label">Name</label>
+                        <label for="directory_name" class="col-form-label">Nom | Name</label>
                         <input type="text" class="form-control" id="directory_name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler | Cancel</button>
+                    <button type="submit" class="btn btn-primary">Soumettre | Submit</button>
                 </div>
             </form>
         </div>
@@ -109,7 +109,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="uploadFilesModalLabel">
-                    Upload one or more files
+                    Téléverser un ou plusieurs fichiers | Upload one or more files
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -124,8 +124,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="_form_token" value="{{.CSRFToken}}">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler | Cancel</button>
+                    <button type="submit" class="btn btn-primary">Soumettre | Submit</button>
                 </div>
             </form>
         </div>
@@ -177,7 +177,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="renameModalLabel">
-                    Rename the selected item
+                    Renommer le fichier sélectionné | Rename the selected item
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -186,24 +186,26 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             <form id="rename_form" action="" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="rename_old_name" class="col-form-label">Old name</label>
+                        <label for="rename_old_name" class="col-form-label">Ancien nom | Old name</label>
                         <input type="text" class="form-control" id="rename_old_name" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="rename_new_dir" class="col-form-label">New base dir</label>
+                        <label for="rename_new_dir" class="col-form-label">Dossier de destination | New base dir</label>
                         <input type="text" class="form-control" id="rename_new_dir" required aria-describedby="renameNewDirHelpBlock">
                         <small id="renameNewDirHelpBlock" class="form-text text-muted">
-                            Setting a directory other than the current one will move the item there. This directory must exists
+                            Définir un répertoire autre que celui en cours y déplacera l'élément. Ce répertoire doit exister
+							<br/>
+							Setting a directory other than the current one will move the item there. This directory must exists
                         </small>
                     </div>
                     <div class="form-group">
-                        <label for="rename_new_name" class="col-form-label">New name</label>
+                        <label for="rename_new_name" class="col-form-label">Nouveau nom | New name</label>
                         <input type="text" class="form-control" id="rename_new_name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler | Cancel</button>
+                    <button type="submit" class="btn btn-primary">Soumettre | Submit</button>
                 </div>
             </form>
         </div>
@@ -216,19 +218,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">
-                    Confirmation required
+                    Confirmation requise | Confirmation required
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Do you want to delete the selected item/s?</div>
+            <div class="modal-body">Voulez-vous supprimer le ou les élément(s) sélectionné(s) | Do you want to delete the selected item/s?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                    Cancel
+                    Annuler | Cancel
                 </button>
                 <a class="btn btn-warning" href="#" onclick="deleteAction()">
-                    Delete
+                    Supprimer | Delete
                 </a>
             </div>
         </div>
@@ -249,7 +251,11 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             </div>
             <div class="modal-body">
                 <video id="video_player" class="video-js vjs-big-play-centered vjs-fluid">
-                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
+                    <p class="vjs-no-js">
+						Pour visionner cette vidéo, veuillez activer JavaScript et envisager de passer à un navigateur Web prenant en charge la vidéo HTML5
+						<br/>
+						To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+					</p>
                   </video>
             </div>
         </div>
@@ -1017,7 +1023,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.refresh = {
             text: '<i class="fas fa-sync-alt"></i>',
             name: 'refresh',
-            titleAttr: "Refresh",
+            titleAttr: "Actualiser | Refresh",
             action: function (e, dt, node, config) {
                 location.reload();
             }
@@ -1026,7 +1032,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.download = {
             text: '<i class="fas fa-download"></i>',
             name: 'download',
-            titleAttr: "Download Zip",
+            titleAttr: "Télécharger Zip | Download Zip",
             action: function (e, dt, node, config) {
                 let filesArray = [];
                 let selected = dt.column(0).checkboxes.selected();
@@ -1045,7 +1051,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.addFiles = {
             text: '<i class="fas fa-file-upload"></i>',
             name: 'addFiles',
-            titleAttr: "Upload files",
+            titleAttr: "Téléverser fichiers | Upload files",
             action: function (e, dt, node, config) {
                 //FilePond.find(document.getElementById("files_name")).removeFiles();
                 $('#uploadFilesModal').modal('show');
@@ -1056,7 +1062,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.addDirectory = {
             text: '<i class="fas fa-folder-plus"></i>',
             name: 'addDirectory',
-            titleAttr: "Add directory",
+            titleAttr: "Ajouter répertoire | Add directory",
             action: function (e, dt, node, config) {
                 $("#directory_name").val("");
                 $('#createDirModal').modal('show');
@@ -1067,7 +1073,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.rename = {
             text: '<i class="fas fa-pen"></i>',
             name: 'rename',
-            titleAttr: "Rename",
+            titleAttr: "Renommer | Rename",
             action: function (e, dt, node, config) {
                 let selected = table.column(0).checkboxes.selected()[0];
                 let itemName = getNameFromMeta(selected);
@@ -1097,7 +1103,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.delete = {
             text: '<i class="fas fa-trash"></i>',
             name: 'delete',
-            titleAttr: "Delete",
+            titleAttr: "Supprimer | Delete",
             action: function (e, dt, node, config) {
                 $('#deleteModal').modal('show');
             },
@@ -1107,7 +1113,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         $.fn.dataTable.ext.buttons.share = {
             text: '<i class="fas fa-share-alt"></i>',
             name: 'share',
-            titleAttr: "Share",
+            titleAttr: "Partager | Share",
             action: function (e, dt, node, config) {
                 let filesArray = [];
                 let selected = dt.column(0).checkboxes.selected();
@@ -1263,9 +1269,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                             let selectedItems = table.column(0).checkboxes.selected().length;
                             let selectedText = "";
                             if (selectedItems == 1) {
-                                selectedText = "1 item selected";
+                                selectedText = "1 selection";
                             } else if (selectedItems > 1) {
-                                selectedText = `${selectedItems} items selected`;
+                                selectedText = `${selectedItems} selections`;
                             }
                             {{if .CanDownload}}
                             table.button('download:name').enable(selectedItems > 0);
@@ -1309,7 +1315,20 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             "responsive": true,
             "language": {
                 "loadingRecords": "",
-                "emptyTable": "No files or folders"
+                "emptyTable": "Aucun fichier ou répertoire | No files or folders",
+				"sInfoEmpty": "Aucune entrée | No entry",
+				"sEmptyTable":"Aucune donnée disponible | No data available in table",
+				"sInfo":"_START_ / _END_ (Total _TOTAL_)",
+				"sLengthMenu":"Montrer | Show _MENU_ entrées | entries",
+				"sZeroRecords":"Aucun enregistrement correspondant trouvé | No matching records found",
+				"sSearch":"Rechercher | Search:",
+				sInfoFiltered:"(Filtré | Filtered)",
+				"oPaginate": {
+					"sFirst":"Premier | First",
+					"sLast":"Dernier | Last",
+					"sNext":"Suivant | Next",
+					"sPrevious":"Précédent | Previous"
+				}
             },
             "initComplete": function (settings, json) {
                 table.button().add(0, 'refresh');

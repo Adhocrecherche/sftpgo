@@ -25,7 +25,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 {{define "page_body"}}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">{{if .IsAdd}}Add a new share{{else}}Edit share{{end}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{if .IsAdd}}Ajouter un partage | Add a new share{{else}}Éditer un partage | Edit share{{end}}</h6>
     </div>
     <div class="card-body">
         {{if .Error}}
@@ -38,7 +38,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         {{end}}
         <form id="share_form" action="{{.CurrentURL}}" method="POST" autocomplete="off">
             <div class="form-group row">
-                <label for="idName" class="col-sm-2 col-form-label">Name</label>
+                <label for="idName" class="col-sm-2 col-form-label">Nom | Name</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="idName" name="name" placeholder=""
                         value="{{.Share.Name}}" maxlength="255" autocomplete="nope" required {{if not .IsAdd}}readonly{{end}}>
@@ -49,19 +49,21 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                 <label for="idScope" class="col-sm-2 col-form-label">Scope</label>
                 <div class="col-sm-10">
                     <select class="form-control selectpicker" id="idScope" name="scope" aria-describedby="scopeHelpBlock">
-                        <option value="1" {{if eq .Share.Scope 1 }}selected{{end}}>Read</option>
-                        <option value="2" {{if eq .Share.Scope 2 }}selected{{end}}>Write</option>
-                        <option value="3" {{if eq .Share.Scope 3 }}selected{{end}}>Read/Write</option>
+                        <option value="1" {{if eq .Share.Scope 1 }}selected{{end}}>Lecture | Read</option>
+                        <option value="2" {{if eq .Share.Scope 2 }}selected{{end}}>Écriture | Write</option>
+                        <option value="3" {{if eq .Share.Scope 3 }}selected{{end}}>Lecture & Écriture | Read & Write</option>
                     </select>
                     <small id="scopeHelpBlock" class="form-text text-muted">
-                        For scope "Write" and "Read&Write" you have to define one path and it must be a directory
+                        Pour la portée "Écriture" et "Lecture & Écriture", vous devez définir un chemin et il doit s'agir d'un répertoire
+						<br/>
+                        For scope "Write" and "Read & Write" you have to define one path and it must be a directory
                     </small>
                 </div>
             </div>
 
             <div class="card bg-light mb-3">
                 <div class="card-header">
-                    Paths
+                    Chemin d'accès | Paths
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -70,7 +72,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                             <div class="row form_field_path_outer_row">
                                 <div class="form-group col-md-11">
                                     <input type="text" class="form-control" id="idPath{{$idx}}" name="paths"
-                                        placeholder="file or directory path, i.e. /dir or /dir/file.txt" value="{{$val}}" maxlength="255">
+                                        placeholder="chemin du fichier ou du répertoire | file or directory path : '/dir' '/dir/file.txt'" value="{{$val}}" maxlength="255">
                                 </div>
                                 <div class="form-group col-md-1">
                                     <button class="btn btn-circle btn-danger remove_path_btn_frm_field">
@@ -82,7 +84,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                             <div class="row form_field_path_outer_row">
                                 <div class="form-group col-md-11">
                                     <input type="text" class="form-control" id="idPath0" name="paths"
-                                        placeholder="file or directory path, i.e. /dir or /dir/file.txt" value="" maxlength="512">
+                                        placeholder="chemin du fichier ou du répertoire | file or directory path : '/dir' '/dir/file.txt'" value="" maxlength="512">
                                 </div>
                                 <div class="form-group col-md-1">
                                     <button class="btn btn-circle btn-danger remove_path_btn_frm_field">
@@ -96,18 +98,19 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
                     <div class="row mx-1">
                         <button type="button" class="btn btn-secondary add_new_path_field_btn">
-                            <i class="fas fa-plus"></i> Add a path
+                            <i class="fas fa-plus"></i> Ajouter un chemin | Add a path
                         </button>
                     </div>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="idPassword" class="col-sm-2 col-form-label">Password</label>
+                <label for="idPassword" class="col-sm-2 col-form-label">Mot de passe | Password</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="idPassword" name="password" autocomplete="new-password" placeholder="" spellcheck="false"
                         value="{{.Share.Password}}" aria-describedby="passwordHelpBlock">
                     <small id="passwordHelpBlock" class="form-text text-muted">
+                        Si défini, le partage sera protégé par un mot de passe<br/>
                         If set the share will be password-protected
                     </small>
                 </div>
@@ -117,7 +120,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                 <label for="idExpiration" class="col-sm-2 col-form-label">Expiration</label>
                 <div class="col-sm-10 input-group date" id="expirationDateTimePicker" data-target-input="nearest">
                     <input type="text" class="form-control datetimepicker-input" id="idExpiration"
-                        data-target="#expirationDateTimePicker" placeholder="none">
+                        data-target="#expirationDateTimePicker" placeholder="none" required>
                     <div class="input-group-append" data-target="#expirationDateTimePicker" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fas fa-calendar"></i></div>
                     </div>
@@ -125,22 +128,24 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             </div>
 
             <div class="form-group row">
-                <label for="idMaxTokens" class="col-sm-2 col-form-label">Max tokens</label>
+                <label for="idMaxTokens" class="col-sm-2 col-form-label">Jetons maximum | Max tokens</label>
                 <div class="col-sm-10">
                     <input type="number" min="0" class="form-control" id="idMaxTokens" name="max_tokens" placeholder=""
                         value="{{.Share.MaxTokens}}" aria-describedby="maxTokensHelpBlock">
                     <small id="maxTokensHelpBlock" class="form-text text-muted">
+                        Nombre maximal d'accès à ce partage. 0 signifie pas de limite<br/>
                         Maximum number of times this share can be accessed. 0 means no limit
                     </small>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="idAllowedIP" class="col-sm-2 col-form-label">Allowed IP/Mask</label>
+                <label for="idAllowedIP" class="col-sm-2 col-form-label">IP/masque autorisé | Allowed IP/Mask</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="idAllowedIP" name="allowed_ip" rows="3" placeholder=""
                         aria-describedby="allowedIPHelpBlock">{{.Share.GetAllowedFromAsString}}</textarea>
                     <small id="allowedIPHelpBlock" class="form-text text-muted">
+                        IP/Masque séparés par des virgules au format CIDR, par exemple "192.168.1.0/24,10.8.0.100/32"<br/>
                         Comma separated IP/Mask in CIDR format, for example "192.168.1.0/24,10.8.0.100/32"
                     </small>
                 </div>
@@ -155,7 +160,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
             <input type="hidden" name="expiration_date" id="hidden_start_datetime" value="">
             <input type="hidden" name="_form_token" value="{{.CSRFToken}}">
-            <button type="submit" class="btn btn-primary float-right mt-3 px-5">Submit</button>
+            <button type="submit" class="btn btn-primary float-right mt-3 px-5">Soumettre | Submit</button>
         </form>
     </div>
 </div>
@@ -210,7 +215,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                     <div class="row form_field_path_outer_row">
                         <div class="form-group col-md-11">
                             <input type="text" class="form-control" id="idPath${index}" name="paths"
-                                        placeholder="file or directory path, i.e. /dir or /dir/file.txt" value="" maxlength="512">
+                                        placeholder="chemin du fichier ou du répertoire | file or directory path : '/dir' '/dir/file.txt'" value="" maxlength="512">
                         </div>
                         <div class="form-group col-md-1">
                             <button class="btn btn-circle btn-danger remove_path_btn_frm_field">

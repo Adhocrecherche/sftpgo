@@ -134,13 +134,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                                 {{if .LoggedUser.CanChangePassword}}
                                 <a class="dropdown-item" href="{{.ChangePwdURL}}">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Change password
+                                    Changer le mot de passe | Change password
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 {{end}}
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Déconnexion | Logout
                                 </a>
                             </div>
                         </li>
@@ -166,7 +166,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>SFTPGo {{.Version}}</span>
+                        <span>Ad hoc Recherche</span>
                     </div>
                 </div>
             </footer>
@@ -191,15 +191,25 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="modalLabel">
+						Voulez-vous vraiment vous déconnecter ?
+						<br/>
+						Do you really want to disconnect
+					</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">
+					Sélectionnez "Déconnexion | Logout" ci-dessous si vous êtes prêt à mettre fin à votre session en cours.
+					<br/>
+					Select "Déconnexion | Logout" below if you are ready to end your current session.
+				</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{.LogoutURL}}">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler | Cancel</button>
+                    <a class="btn btn-primary" href="{{.LogoutURL}}">
+						Déconnexion | Logout
+					</a>
                 </div>
             </div>
         </div>
@@ -217,6 +227,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     <!-- Custom scripts for all pages-->
     <script src="{{.StaticURL}}/js/sb-admin-2.min.js"></script>
+	<script src="{{.StaticURL}}/js/custom_script.js"></script>
 
     <script type="text/javascript">
         function escapeHTML(str) {
