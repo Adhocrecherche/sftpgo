@@ -303,8 +303,8 @@
         },
         "branding": {
           "web_admin": {
-            "name": "",
-            "short_name": "",
+            "name": "Admin Ad hoc Recherche",
+            "short_name": "Admin Ad hoc Recherche",
             "favicon_path": "",
             "logo_path": "",
             "login_image_path": "",
@@ -314,8 +314,8 @@
             "extra_css": []
           },
           "web_client": {
-            "name": "",
-            "short_name": "",
+            "name": "Ad hoc Recherche",
+            "short_name": "Ad hoc Recherche",
             "favicon_path": "",
             "logo_path": "",
             "login_image_path": "",
@@ -327,9 +327,9 @@
         }
       }
     ],
-    "templates_path": "templates",
-    "static_files_path": "static",
-    "openapi_path": "openapi",
+    "templates_path": "/srv/sftpgo/adhoc/templates",
+    "static_files_path": "/srv/sftpgo/adhoc/static",
+    "openapi_path": "/srv/sftpgo/adhoc/openapi",
     "web_root": "",
     "certificate_file": "",
     "certificate_key_file": "",
