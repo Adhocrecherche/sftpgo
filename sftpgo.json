@@ -203,7 +203,7 @@
     "track_quota": 2,
     "delayed_quota_update": 0,
     "pool_size": 0,
-    "users_base_dir": "",
+    "users_base_dir": "/srv/sftpgo/data",
     "actions": {
       "execute_on": [],
       "execute_for": [],
@@ -245,7 +245,7 @@
       "port": 0,
       "proto": "http"
     },
-    "backups_path": "backups"
+    "backups_path": "/srv/sftpgo/backups"
   },
   "httpd": {
     "bindings": [
