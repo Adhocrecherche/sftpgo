@@ -336,6 +336,17 @@ func (c *BaseConnection) CheckParentDirs(virtualPath string) error {
 	return nil
 }
 
+// GetCreateChecks returns the checks for creating new files
+func (c *BaseConnection) GetCreateChecks(virtualPath string, isNewFile bool) int {
+	if !isNewFile {
+		return 0
+	}
+	if !c.User.HasPerm(dataprovider.PermCreateDirs, path.Dir(virtualPath)) {
+		return vfs.CheckParentDir
+	}
+	return 0
+}
+
 // CreateDir creates a new directory at the specified fsPath
 func (c *BaseConnection) CreateDir(virtualPath string, checkFilePatterns bool) error {
 	if !c.User.HasPerm(dataprovider.PermCreateDirs, path.Dir(virtualPath)) {
@@ -1514,7 +1525,8 @@ func (c *BaseConnection) GetGenericError(err error) error {
 		return sftp.ErrSSHFxFailure
 	default:
 		if err == ErrPermissionDenied || err == ErrNotExist || err == ErrOpUnsupported ||
-			err == ErrQuotaExceeded || err == vfs.ErrStorageSizeUnavailable || err == ErrShuttingDown {
+			err == ErrQuotaExceeded || err == ErrReadQuotaExceeded || err == vfs.ErrStorageSizeUnavailable ||
+			err == ErrShuttingDown {
 			return err
 		}
 		c.Log(logger.LevelError, "generic error: %+v", err)
