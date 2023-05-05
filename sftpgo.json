@@ -330,7 +330,7 @@
     ],
     "templates_path": "/srv/sftpgo/adhoc/templates",
     "static_files_path": "/srv/sftpgo/adhoc/static",
-    "openapi_path": "/srv/sftpgo/adhoc/openapi",
+    "openapi_path": "openapi",
     "web_root": "",
     "certificate_file": "",
     "certificate_key_file": "",
